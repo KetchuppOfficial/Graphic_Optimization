@@ -1,4 +1,3 @@
-
 #include "../../TX/TXLib.h"
 
 #define VERT_SIZE 1080
@@ -6,8 +5,8 @@
 
 int main (void)
 {
-    txCreateWindow (HOR_SIZE, VERT_SIZE); // creating window 1920x1080 px_iels
-    Win32::_fpreset();
+    txCreateWindow (HOR_SIZE, VERT_SIZE); // создание окна 1920x1080
+    //Win32::_fpreset();
     txBegin();                 // блокирует обновление изображения окна во избежание миганий
 
     typedef RGBQUAD (&scr_t) [VERT_SIZE][HOR_SIZE];
@@ -16,29 +15,32 @@ int main (void)
     const int   n_max  = 256;
     const float r_sq_max = 100.f;
 
-    float X_C = HOR_SIZE / 2.f + 300.f, Y_C = VERT_SIZE / 2.f, scale = 450.f; // координаты цента и коэффициент увеличения
+    float X_C = HOR_SIZE / 2.f + 300.f;   // Положение начала коондинат системы, связанной с множеством
+    float Y_C = VERT_SIZE / 2.f;          // Мандельброта в системе координат буфера экрана
+
+    float scale = 450.f; // коэффициент увеличения
 
     for (;;)
     {
         if (GetAsyncKeyState (VK_ESCAPE)) // проверяет, нажата ли клавиша Esc
             break;
 
-        if (txGetAsyncKeyState (VK_RIGHT)) 
+        if (txGetAsyncKeyState ('D'))  
             X_C += ( txGetAsyncKeyState (VK_SHIFT) ? 100.f : 10.f );
 
-        if (txGetAsyncKeyState (VK_LEFT))  
+        if (txGetAsyncKeyState ('A')) 
             X_C -= ( txGetAsyncKeyState (VK_SHIFT) ? 100.f : 10.f );
 
-        if (txGetAsyncKeyState (VK_DOWN))  
+        if (txGetAsyncKeyState ('W'))  
             Y_C += ( txGetAsyncKeyState (VK_SHIFT) ? 100.f : 10.f );
         
-        if (txGetAsyncKeyState (VK_UP))    
+        if (txGetAsyncKeyState ('S'))    
             Y_C -= ( txGetAsyncKeyState (VK_SHIFT) ? 100.f : 10.f );
         
-        if (txGetAsyncKeyState ('A'))      
+        if (txGetAsyncKeyState (VK_UP))      
             scale += ( txGetAsyncKeyState (VK_SHIFT) ? 100.f : 10.f );
         
-        if (txGetAsyncKeyState ('Z'))      
+        if (scale > 20 && txGetAsyncKeyState (VK_DOWN))      
             scale -= ( txGetAsyncKeyState (VK_SHIFT) ? 100.f : 10.f );
 
         for (int y_i = 0; y_i < VERT_SIZE; y_i++) 
