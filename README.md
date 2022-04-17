@@ -18,13 +18,13 @@ Visulization of the Mandelbrot set is implemented by [TXLib](https://github.com/
 
 |     | No optimizations | AVX2 double | AVX2 float |
 |-----|------------------|-------------|------------|
-| FPS |        4         |   25 - 40   |  25 - 40   |
+| FPS |        4         |   25 - 40   |  30 - 50   |
 
 3. **Output, moving picture**
 
 |     | No optimizations | AVX2 double | AVX2 float |
 |-----|------------------|-------------|------------|
-| FPS |       4-7        |   25 - 40   |  25 - 40   |
+| FPS |       4-7        |   25 - 40   |  30 - 50   |
 
 ## Picture of the Mandelbrot set
 
