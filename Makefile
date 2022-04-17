@@ -2,7 +2,7 @@
 # NO OPTIMIZATIONS
 
 Mandelbrot:
-	g++ .\Mandelbrot.cpp -o Mandelbrot.exe
+	g++ .\Mandelbrot.cpp -O3 -o Mandelbrot.exe
 
 run:
 	.\Mandelbrot.exe
