@@ -40,11 +40,11 @@ static inline void Check_Buttons (double *X_C, double *Y_C, double *scale, __m25
 int main (void)
 {
     #if OUTPUT == 1
-    txCreateWindow (HOR_SIZE, VERT_SIZE); // создание окна 1920x1080
+    txCreateWindow (HOR_SIZE, VERT_SIZE);
     Win32::_fpreset();
-    txBegin();                 // блокирует обновление изображения окна во избежание миганий
+    txBegin();
 
-    scr_t screen_buff = (scr_t) *txVideoMemory(); // буфер экрана
+    scr_t screen_buff = (scr_t) *txVideoMemory();
     #endif
 
     const int iters_max  = 256;
@@ -124,7 +124,7 @@ int main (void)
             
         printf ("\033[0;0H\033[2K %.0f FPS", txGetFPS());
         #if OUTPUT == 1
-        txUpdateWindow(); // разрешить обновление экрана
+        txUpdateWindow();
         #endif
     }
 

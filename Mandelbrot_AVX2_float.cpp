@@ -40,11 +40,11 @@ static inline void Check_Buttons (float *X_C, float *Y_C, float *scale, __m256 *
 int main (void)
 {
     #if OUTPUT == 1
-    txCreateWindow (HOR_SIZE, VERT_SIZE); // создание окна 1920x1080
+    txCreateWindow (HOR_SIZE, VERT_SIZE);
     Win32::_fpreset();
-    txBegin();                 // блокирует обновление изображения окна во избежание миганий
+    txBegin();
 
-    scr_t screen_buff = (scr_t) *txVideoMemory(); // буфер экрана
+    scr_t screen_buff = (scr_t) *txVideoMemory();
     #endif
 
     const int iters_max  = 256;
@@ -75,7 +75,7 @@ int main (void)
         {
             __m256 Y_0 = _mm256_set1_ps ( ((float)y_i - Y_C) * scale );
 
-            for (int x_i = 0; x_i < HOR_SIZE; x_i += 4)
+            for (int x_i = 0; x_i < HOR_SIZE; x_i += 8)
             {                                                                                        
                 __m256 X_0 =_mm256_mul_ps ( _mm256_sub_ps ( _mm256_add_ps ( _mm256_set1_ps ( (float)x_i ), _76543210 ), _mm256_set1_ps (X_C) ), SCALE );
 
@@ -111,7 +111,7 @@ int main (void)
                 int *N_ptr = (int *)&inside_iters;         
                 float    *I_ptr = (float *)   &I;
 
-                for (int i = 0; i < 4; i++)
+                for (int i = 0; i < 8; i++)
                 {
                     BYTE c = (BYTE) I_ptr[i];
                     RGBQUAD color = (N_ptr[i] < iters_max) ? RGBQUAD { (BYTE) (255 - c), (BYTE) (c % 2 * 32), c } : RGBQUAD {};
@@ -124,7 +124,7 @@ int main (void)
             
         printf ("\033[0;0H\033[2K %.0f FPS", txGetFPS());
         #if OUTPUT == 1
-        txUpdateWindow(); // разрешить обновление экрана
+        txUpdateWindow();
         #endif
     }
 
