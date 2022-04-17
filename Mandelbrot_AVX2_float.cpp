@@ -59,15 +59,15 @@ int main (void)
     float X_C = HOR_SIZE * 0.5f + VERT_SIZE * (5.f / 18.f);
     float Y_C = VERT_SIZE * 0.5f;
 
-    float scale = 0.002f;
+    float scale = 0.005f;
     __m256 SCALE = _mm256_set1_ps (scale);
 
     for (;;)
     {
-        #if OUTPUT == 1
         if (GetAsyncKeyState (VK_ESCAPE))
             break;
 
+        #if OUTPUT == 1
         Check_Buttons (&X_C, &Y_C, &scale, &SCALE);
         #endif
 
@@ -122,15 +122,13 @@ int main (void)
             }
         }
             
-        printf ("\033[0;0H %.0f FPS\033[1;0H", txGetFPS());
+        printf ("\033[0;0H\033[2K %.0f FPS", txGetFPS());
         #if OUTPUT == 1
         txUpdateWindow(); // разрешить обновление экрана
         #endif
     }
 
-    #if OUTPUT == 1
     txDisableAutoPause(); // txIDontWantToHaveAPauseAfterMyProgramBeforeTheWindowWillClose_AndIWillNotBeAskingWhereIsMyPicture ()
-    #endif
 
     return 0;
 }

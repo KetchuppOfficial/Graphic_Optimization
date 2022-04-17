@@ -3,8 +3,8 @@
 
 #define OUTPUT 1
 
-const int VERT_SIZE = 600;
-const int HOR_SIZE  = 800;
+const int VERT_SIZE = 1080;
+const int HOR_SIZE  = 1920;
 
 #if OUTPUT == 1
 typedef RGBQUAD (&scr_t) [VERT_SIZE][HOR_SIZE];
@@ -59,15 +59,15 @@ int main (void)
     double X_C = HOR_SIZE * 0.5 + VERT_SIZE * (5.0 / 18.0);
     double Y_C = VERT_SIZE * 0.5;
 
-    double scale = 0.002;
+    double scale = 0.005;
     __m256d SCALE = _mm256_set1_pd (scale);
 
     for (;;)
     {
-        #if OUTPUT == 1
         if (GetAsyncKeyState (VK_ESCAPE))
             break;
 
+        #if OUTPUT == 1
         Check_Buttons (&X_C, &Y_C, &scale, &SCALE);
         #endif
 
@@ -122,15 +122,13 @@ int main (void)
             }
         }
             
-        printf ("\033[0;0H %.0f FPS\033[1;0H", txGetFPS());
+        printf ("\033[0;0H\033[2K %.0f FPS", txGetFPS());
         #if OUTPUT == 1
         txUpdateWindow(); // разрешить обновление экрана
         #endif
     }
 
-    #if OUTPUT == 1
     txDisableAutoPause(); // txIDontWantToHaveAPauseAfterMyProgramBeforeTheWindowWillClose_AndIWillNotBeAskingWhereIsMyPicture ()
-    #endif
 
     return 0;
 }

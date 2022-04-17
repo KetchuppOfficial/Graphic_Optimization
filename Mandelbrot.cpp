@@ -33,27 +33,27 @@ static inline void Check_Buttons (float *X_C, float *Y_C, float *scale)
 int main (void)
 {
     #if OUTPUT == 1
-    txCreateWindow (HOR_SIZE, VERT_SIZE); // создание окна 1920x1080
+    txCreateWindow (HOR_SIZE, VERT_SIZE);
     Win32::_fpreset();
-    txBegin();                 // блокирует обновление изображения окна во избежание миганий
+    txBegin();
 
-    scr_t screen_buff = (scr_t) *txVideoMemory(); // буфер экрана
+    scr_t screen_buff = (scr_t) *txVideoMemory();
     #endif
 
     const int   n_max  = 256;
     const float r_sq_max = 100.f;
 
-    float X_C = HOR_SIZE / 2.f + VERT_SIZE * (5.f / 18.f);   // Положение начала коондинат системы, связанной с множеством
-    float Y_C = VERT_SIZE / 2.f;          // Мандельброта в системе координат буфера экрана
+    float X_C = HOR_SIZE / 2.f + VERT_SIZE * (5.f / 18.f);
+    float Y_C = VERT_SIZE / 2.f;
 
-    float scale = 0.002f; // коэффициент увеличения
+    float scale = 0.005f;
 
     for (;;)
     {
-        #if OUTPUT == 1
-        if (GetAsyncKeyState (VK_ESCAPE)) // проверяет, нажата ли клавиша Esc
+        if (GetAsyncKeyState (VK_ESCAPE))
             break;
 
+        #if OUTPUT == 1
         Check_Buttons (&X_C, &Y_C, &scale);
         #endif
 
@@ -88,15 +88,13 @@ int main (void)
             }
         }
             
-        printf ("\033[0;0H %.0f FPS\033[1;0H", txGetFPS());
+        printf ("\033[0;0H\033[2K %.0f FPS", txGetFPS());
         #if OUTPUT == 1
         txUpdateWindow(); // разрешить обновление экрана
         #endif
     }
 
-    #if OUTPUT == 1
     txDisableAutoPause(); // txIDontWantToHaveAPauseAfterMyProgramBeforeTheWindowWillClose_AndIWillNotBeAskingWhereIsMyPicture ()
-    #endif
 
     return 0;
 }
