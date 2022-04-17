@@ -3,8 +3,8 @@
 
 #define OUTPUT 1
 
-const int VERT_SIZE = 1080;
-const int HOR_SIZE  = 1920;
+const int VERT_SIZE = 600;
+const int HOR_SIZE  = 800;
 
 #if OUTPUT == 1
 typedef RGBQUAD (&scr_t) [VERT_SIZE][HOR_SIZE];
@@ -59,7 +59,7 @@ int main (void)
     double X_C = HOR_SIZE * 0.5 + VERT_SIZE * (5.0 / 18.0);
     double Y_C = VERT_SIZE * 0.5;
 
-    double scale = 0.005;
+    double scale = 0.004;
     __m256d SCALE = _mm256_set1_pd (scale);
 
     for (;;)
@@ -72,7 +72,7 @@ int main (void)
         #endif
 
         for (int y_i = 0; y_i < VERT_SIZE; y_i++) 
-        {
+        {            
             __m256d Y_0 = _mm256_set1_pd ( ((double)y_i - Y_C) * scale );
 
             for (int x_i = 0; x_i < HOR_SIZE; x_i += 4)
@@ -121,8 +121,8 @@ int main (void)
                 #endif
             }
         }
-            
-        printf ("\033[0;0H\033[2K %.0f FPS", txGetFPS());
+                    
+        printf ("%.0f FPS\r", txGetFPS ());
         #if OUTPUT == 1
         txUpdateWindow();
         #endif

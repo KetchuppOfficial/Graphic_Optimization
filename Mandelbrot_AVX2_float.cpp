@@ -59,7 +59,7 @@ int main (void)
     float X_C = HOR_SIZE * 0.5f + VERT_SIZE * (5.f / 18.f);
     float Y_C = VERT_SIZE * 0.5f;
 
-    float scale = 0.005f;
+    float scale = 0.004f;
     __m256 SCALE = _mm256_set1_ps (scale);
 
     for (;;)
@@ -122,7 +122,7 @@ int main (void)
             }
         }
             
-        printf ("\033[0;0H\033[2K %.0f FPS", txGetFPS());
+        printf ("%.0f FPS\r", txGetFPS());
         #if OUTPUT == 1
         txUpdateWindow();
         #endif

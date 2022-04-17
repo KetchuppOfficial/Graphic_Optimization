@@ -2,8 +2,8 @@
 
 #define OUTPUT 1
 
-const int VERT_SIZE  = 600;
-const int HOR_SIZE = 800;
+const int VERT_SIZE = 600;
+const int HOR_SIZE  = 800;
 
 #if OUTPUT == 1
 typedef RGBQUAD (&scr_t) [VERT_SIZE][HOR_SIZE];
@@ -46,7 +46,7 @@ int main (void)
     float X_C = HOR_SIZE / 2.f + VERT_SIZE * (5.f / 18.f);
     float Y_C = VERT_SIZE / 2.f;
 
-    float scale = 0.005f;
+    float scale = 0.004f;
 
     for (;;)
     {
@@ -88,7 +88,7 @@ int main (void)
             }
         }
             
-        printf ("\033[0;0H\033[2K %.0f FPS", txGetFPS());
+        printf ("%.0f FPS\r", txGetFPS());
         #if OUTPUT == 1
         txUpdateWindow(); // разрешить обновление экрана
         #endif
