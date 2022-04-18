@@ -1,3 +1,5 @@
+![Windows](https://img.shields.io/badge/Windows-0078D6?style=for-the-badge&logo=windows&logoColor=white)
+
 # Mandelbrot Set
 
 This project is C++ implementation of the Mandelbrot set renderer. The feature the project is using Intel<sup>&reg;</sup> Intrinsics for optimization of calculations.
