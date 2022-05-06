@@ -1,35 +1,19 @@
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# NO OPTIMIZATIONS
+CC = g++
 
-Mandelbrot:
-	g++ .\Mandelbrot.cpp -O3 -o Mandelbrot.exe
+all: Mandelbrot
+
+Mandelbrot: main.o Mandelbrot.o
+	$(CC) main.o Mandelbrot.o -o Mandelbrot.exe
+	del *.o
+
+main.o:
+	$(CC) -c $(MODE) main.cpp -o main.o
+
+Mandelbrot.o:
+	$(CC) -c Mandelbrot.cpp $(OPT) -mavx2 -o Mandelbrot.o
 
 run:
-	.\Mandelbrot.exe
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# AVX2 OPTIMIZATION WITH DOUBLE NUMBERS
-
-AVX_double:
-	g++ .\Mandelbrot_AVX2_double.cpp -mavx2 -O3 -o Mandelbrot_AVX2_double.exe
-
-run_double:
-	.\Mandelbrot_AVX2_double.exe
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
-# AVX2 OPTIMIZATION WITH FLOAT NUMBERS
-
-AVX_float:
-	g++ .\Mandelbrot_AVX2_float.cpp -mavx2 -O3 -o Mandelbrot_AVX2_float.exe
-
-run_float:
-	.\Mandelbrot_AVX2_float.exe
-
-#~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+	.\Mandelbrot.exe $(W) $(H)
 
 clean:
 	del *.exe
