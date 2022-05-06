@@ -27,5 +27,8 @@ int main (int argc, char *argv[])
     Draw_Mandelbrot_AVX2_float  (atoi (argv[1]), atoi (argv[2]));
     #endif
 
+    txDisableAutoPause(); 
+    // txIDontWantToHaveAPauseAfterMyProgramBeforeTheWindowWillClose_AndIWillNotBeAskingWhereIsMyPicture ()
+
     return 0;
 }

@@ -241,9 +241,6 @@ void Draw_Mandelbrot_AVX2_float (const int hor_size, const int vert_size)
         
         txUpdateWindow (true);
     }
-
-    txDisableAutoPause(); 
-    // txIDontWantToHaveAPauseAfterMyProgramBeforeTheWindowWillClose_AndIWillNotBeAskingWhereIsMyPicture ()
 }
 
 //===================================================================================================//
@@ -375,9 +372,6 @@ void Draw_Mandelbrot_AVX2_double (const int hor_size, const int vert_size)
 
         txUpdateWindow (true);
     }
-
-    txDisableAutoPause(); 
-    // txIDontWantToHaveAPauseAfterMyProgramBeforeTheWindowWillClose_AndIWillNotBeAskingWhereIsMyPicture ()
 }
 
 //===================================================================================================//
