@@ -18,7 +18,7 @@ git@github.com:KetchuppOfficial/Mandelbort_Set.git
 cd Mandelbrot_Set
 ```
 
-Comlile the program using tool **make**. You can choose one of 3 modes:
+Compile the program using tool **make**. You can choose one of 3 modes:
 ```bash
 make                    # for basic mode
 make MODE=-DDOUBLE      # for AVX2 double mode
