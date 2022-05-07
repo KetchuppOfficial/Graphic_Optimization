@@ -3,11 +3,7 @@
 
 static inline RGBQUAD *Create_Window (const int hor_size, const int vert_size)
 {
-    txCreateWindow (hor_size, vert_size);       // creates window of (hor_size x vert_size); window is centered
-
-    Win32::_fpreset();                          // reinitialization of math coprocessor ()
-                                                // TXLib aborts the program if any error accures
-                                                // this function returns the state to the initial one 
+    txCreateWindow (hor_size, vert_size);       // creates window of (hor_size x vert_size); window is centered 
 
     RGBQUAD *screen_buff = txVideoMemory ();    // return pointer on the screen buffer as if it was one dimention array
 
@@ -45,6 +41,10 @@ void Draw_Mandelbrot (const int hor_size, const int vert_size)
 {
     assert (hor_size  > 0);
     assert (vert_size > 0);
+
+    Win32::_fpreset(); // reinitialization of math coprocessor ()
+                       // TXLib aborts the program if any error accures
+                       // this function returns the state to the initial one
     
     RGBQUAD *screen_buff = Create_Window (hor_size, vert_size);
     
@@ -152,6 +152,8 @@ void Draw_Mandelbrot_AVX2_float (const int hor_size, const int vert_size)
 {
     assert (hor_size  > 0);
     assert (vert_size > 0);
+
+    Win32::_fpreset();
     
     RGBQUAD *screen_buff = Create_Window (hor_size, vert_size);
     
@@ -288,6 +290,8 @@ void Draw_Mandelbrot_AVX2_double (const int hor_size, const int vert_size)
 {
     assert (hor_size  > 0);
     assert (vert_size > 0);
+
+    Win32::_fpreset();
     
     RGBQUAD *screen_buff = Create_Window (hor_size, vert_size);
 
