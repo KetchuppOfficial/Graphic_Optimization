@@ -101,11 +101,13 @@ void Draw_Mandelbrot (const int hor_size, const int vert_size)
                 *(screen_buff + y_i * hor_size + x_i) = color;
             }
         }
-            
         printf ("%.0f FPS\r", txGetFPS());
 
         txUpdateWindow (true);  // allows to update window
     }
+
+    txDisableAutoPause(); 
+    // txIDontWantToHaveAPauseAfterMyProgramBeforeTheWindowWillClose_AndIWillNotBeAskingWhereIsMyPicture ()
 }
 //===================================================================================================//
 
@@ -243,6 +245,9 @@ void Draw_Mandelbrot_AVX2_float (const int hor_size, const int vert_size)
         
         txUpdateWindow (true);
     }
+
+    txDisableAutoPause(); 
+    // txIDontWantToHaveAPauseAfterMyProgramBeforeTheWindowWillClose_AndIWillNotBeAskingWhereIsMyPicture ()
 }
 
 //===================================================================================================//
@@ -376,6 +381,9 @@ void Draw_Mandelbrot_AVX2_double (const int hor_size, const int vert_size)
 
         txUpdateWindow (true);
     }
+
+    txDisableAutoPause(); 
+    // txIDontWantToHaveAPauseAfterMyProgramBeforeTheWindowWillClose_AndIWillNotBeAskingWhereIsMyPicture ()
 }
 
 //===================================================================================================//
