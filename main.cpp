@@ -1,17 +1,25 @@
 #include "Mandelbrot.hpp"
 
-int main (int argc, char *argv[])
+int Check_Argc (int argc)
 {
     if (argc < 3)
     {
         printf ("You haven't set the size of the window\n");
-        exit (EXIT_FAILURE);
+        return -1;
     }
     else if (argc > 3)
     {
         printf ("There are too many arguments for main ()\n");
-        exit (EXIT_FAILURE);
+        return -1;
     }
+
+    return 0;
+}
+
+int main (int argc, char *argv[])
+{
+    if (Check_Argc (argc) == -1)
+        return 1;
     
     #ifndef DOUBLE
     #ifndef FLOAT
@@ -26,9 +34,6 @@ int main (int argc, char *argv[])
     #ifdef FLOAT
     Draw_Mandelbrot_AVX2_float  (atoi (argv[1]), atoi (argv[2]));
     #endif
-
-    txDisableAutoPause(); 
-    // txIDontWantToHaveAPauseAfterMyProgramBeforeTheWindowWillClose_AndIWillNotBeAskingWhereIsMyPicture ()
 
     return 0;
 }
