@@ -1,10 +1,9 @@
 CC = g++
 
-all: Mandelbrot
+all: Mandelbrot clean
 
 Mandelbrot: main.o Mandelbrot.o
 	$(CC) main.o Mandelbrot.o -o Mandelbrot.exe
-	del *.o
 
 main.o:
 	$(CC) -c $(MODE) main.cpp -o main.o
@@ -16,4 +15,4 @@ run:
 	.\Mandelbrot.exe $(W) $(H)
 
 clean:
-	del *.exe
+	del *.o
